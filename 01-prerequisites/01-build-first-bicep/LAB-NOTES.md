@@ -21,3 +21,6 @@ az deployment group create --resource-group rg-bicep --template-file 01-prerequi
 
 # 3. Verify deployment history in table format
 az deployment group list --resource-group rg-bicep --output table
+
+# 4. List all deployed resources within the resource group cleanly via CLI
+az resource list --resource-group rg-bicep --query "[].{Name:name, Type:type}" --output table
