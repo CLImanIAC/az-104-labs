@@ -18,3 +18,6 @@ az login
 
 # 2. Deploy Bicep template to existing resource group
 az deployment group create --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/main.bicep
+
+# 3. Verify deployment history in table format
+az deployment group list --resource-group rg-bicep --output table
