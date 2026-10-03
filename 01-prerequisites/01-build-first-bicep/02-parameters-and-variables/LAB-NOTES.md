@@ -13,3 +13,8 @@
 ### 3. Azure Resource Hierarchy & Governance
 - **Management Groups & Subscriptions**: Provide the top-level financial, administrative, and compliance boundaries. Policies applied here cascade down.
 - **Resource Groups**: Act as logical containers (similar to Organizational Units in Active Directory) used for lifecycle management, environment separation (Dev/Test/Prod), and security isolation via Role-Based Access Control (RBAC).
+
+### 4. Core Cloud Application Components
+- **App Service Plan**: Represents the **infrastructure (server / compute)** layer providing the CPU and RAM resources.
+- **App Service App**: Represents the **application (runtime / code)** layer running on top of the plan, exposed via a public URL.
+- **Storage Account**: Represents the **storage** layer used for persistent data, requiring a globally unique network endpoint.
