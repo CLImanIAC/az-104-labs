@@ -13,23 +13,23 @@
 
 ## 🚀 Execution Commands Used
 
-# 1. Authenticate with Azure
+1. Authenticate with Azure
 ```powershell
 az login
 ```
-# 2. Create resource group
+2. Create resource group
 ```powershell
 az group create --name rg-bicep --location swedencentral
 ```
-# 3. Deploy Bicep template to existing resource group
+3. Deploy Bicep template to existing resource group
 ```powershell
 az deployment group create --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/01-intro-and-resources/main.bicep
 ```
-# 4. Verify deployment history in table format
+4. Verify deployment history in table format
 ```powershell
 az deployment group list --resource-group rg-bicep --output table
 ```
-# 5. List all deployed resources within the resource group cleanly via CLI
+5. List all deployed resources within the resource group cleanly via CLI
 ```powershell
 az resource list --resource-group rg-bicep --query "[].{Name:name, Type:type}" --output table
 ```
