@@ -16,11 +16,14 @@
 # 1. Authenticate with Azure
 az login
 
-# 2. Deploy Bicep template to existing resource group
+# 2. Create resource group
+az group create --name rg-bicep --location swedencentral
+
+# 3. Deploy Bicep template to existing resource group
 az deployment group create --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/main.bicep
 
-# 3. Verify deployment history in table format
+# 4. Verify deployment history in table format
 az deployment group list --resource-group rg-bicep --output table
 
-# 4. List all deployed resources within the resource group cleanly via CLI
+# 5. List all deployed resources within the resource group cleanly via CLI
 az resource list --resource-group rg-bicep --query "[].{Name:name, Type:type}" --output table
