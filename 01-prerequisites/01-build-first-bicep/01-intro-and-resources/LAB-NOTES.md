@@ -20,7 +20,7 @@ az login
 az group create --name rg-bicep --location swedencentral
 
 # 3. Deploy Bicep template to existing resource group
-az deployment group create --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/main.bicep
+az deployment group create --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/01-intro-and-resources/main.bicep
 
 # 4. Verify deployment history in table format
 az deployment group list --resource-group rg-bicep --output table
