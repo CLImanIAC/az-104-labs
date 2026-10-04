@@ -33,9 +33,11 @@ To execute the modular deployment from the project root using Azure CLI:
 
 ```powershell
 az deployment group create --name main --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/03-refactoring-modules/main.bicep --parameters environmentType=nonprod
+```
 
 ## 🧹 Cleanup: Deleting the Resource Group (`rg-bicep`)
 To tear down all deployed resources and clean up your Azure environment when you are done practicing:
 
 ```powershell
 az group delete --name rg-bicep --yes --no-wait
+```
