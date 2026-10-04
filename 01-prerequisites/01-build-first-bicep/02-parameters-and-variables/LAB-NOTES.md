@@ -18,3 +18,9 @@
 - **App Service Plan**: Represents the **infrastructure (server / compute)** layer providing the CPU and RAM resources.
 - **App Service App**: Represents the **application (runtime / code)** layer running on top of the plan, exposed via a public URL.
 - **Storage Account**: Represents the **storage** layer used for persistent data, requiring a globally unique network endpoint.
+
+### Useful Commands & Syntax for Parameters & Variables
+
+1. **Deployment Command with Parameters:**
+   ```powershell
+   az deployment group create --resource-group rg-bicep --template-file 01-prerequisites/01-build-first-bicep/02-parameters-and-variables/main.bicep --parameters environmentType=nonprod
