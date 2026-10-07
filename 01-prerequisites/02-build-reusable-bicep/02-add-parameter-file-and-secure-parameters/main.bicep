@@ -30,8 +30,8 @@ param sqlServerAdministratorLogin string
 @description('The administrator login password for the SQL server.')
 param sqlServerAdministratorPassword string
 
-@description('The name and tier of the SQL server SKU.')
-param sqlServerSku object
+@description('The name and tier of the SQL database SKU.')
+param sqlDatabaseSku object
 
 var appServicePlanName = '${environmentName}-${solutionName}-plan'
 var appServiceAppName = '${environmentName}-${solutionName}-app'
@@ -57,7 +57,7 @@ resource appServiceApp 'Microsoft.Web/sites@2024-04-01' = {
   }
 }
 
-resource sqlServer 'Microsoft.Sql/servers@2024-04-01' = {
+resource sqlServer 'Microsoft.Sql/servers@2023-08-01' = {
   name: sqlServerName
   location: location
   properties: {
@@ -66,12 +66,12 @@ resource sqlServer 'Microsoft.Sql/servers@2024-04-01' = {
   }
 }
 
-resource sqlDatabase 'Microsoft.Sql/servers/databases@2024-04-01' = {
+resource sqlDatabase 'Microsoft.Sql/servers/databases@2023-08-01' = {
   parent: sqlServer
   name: sqlDatabaseName
   location: location
   sku: {
-    name: sqlServerSku.name
-    tier: sqlServerSku.tier
+    name: sqlDatabaseSku.name
+    tier: sqlDatabaseSku.tier
   }
 }

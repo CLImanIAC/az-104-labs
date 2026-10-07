@@ -31,5 +31,5 @@ az keyvault show --name $keyVaultName --query id --output tsv
 ```
 **6. Deploy the bicep template with parameters file and Azure KEy Vault references**
 ```GIT bash
-az deployment group create --name main --resource-group rg-bicep --template-file D:\Azure\01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.bicep --parameters D:\Azure\01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.parameters.dev.json
+az deployment group create --name main --resource-group rg-bicep --template-file 01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.bicep --parameters 01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.parameters.dev.json
 ```
