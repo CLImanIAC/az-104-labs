@@ -14,11 +14,13 @@ az deployment group create --name main --resource-group rg-bicep --template-file
 keyVaultName='kv-rg-bicep-dev'
 read -s -p "Enter the login name: " login
 read -s -p "Enter the password: " password
-```
-```powershell
 az provider register --namespace Microsoft.KeyVault
 az provider show --namespace Microsoft.KeyVault --query "registrationState"
-az keyvault create --name $keyVaultName --resource-group rg-bicep --location swedencentral --enabled-for-template-deployment true
+az keyvault create --name $keyVaultName --resource-group rg-bicep --location swedencentral --enabled-for-template-deployment true --enable-rbac-authorization false
 az keyvault secret set --vault-name $keyVaultName --name "sqlServerAdministratorLogin" --value $login --output none
 az keyvault secret set --vault-name $keyVaultName --name "sqlServerAdministratorPassword" --value $password --output none
+```
+**4. Get the key vault's resource ID**
+```powershell
+az keyvault show --name kv-rg-bicep-dev --query id --output tsv
 ```
