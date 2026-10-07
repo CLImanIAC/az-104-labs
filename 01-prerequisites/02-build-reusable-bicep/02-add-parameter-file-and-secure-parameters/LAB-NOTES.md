@@ -33,3 +33,9 @@ az keyvault show --name $keyVaultName --query id --output tsv
 ```GIT bash
 az deployment group create --name main --resource-group rg-bicep --template-file 01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.bicep --parameters 01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.parameters.dev.json
 ```
+**7. 🧹 Cleanup: Deleting the Resource Group (`rg-bicep`)**
+To tear down all deployed resources and clean up your Azure environment when you are done practicing:
+
+```powershell
+az group delete --name rg-bicep --yes --no-wait
+```
