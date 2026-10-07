@@ -37,7 +37,7 @@ Decorators (starting with `@`) modify parameter behavior, enforce rules, and add
 * **The `@secure()` Decorator:** Applying the `@secure()` decorator to a parameter tells Azure Resource Manager (ARM) to treat the value as sensitive. This ensures the value is **never logged** or displayed in deployment history, console output, or Azure portal logs.
 * **Azure Key Vault Integration (Best Practice):** Secrets should never be hardcoded or passed manually. Instead, secure parameters should be dynamically retrieved at deployment time directly from an **Azure Key Vault** using a Key Vault reference.
 * **Secure Outputs:** Sensitive values generated during deployment can also be protected using the `@secure()` decorator on output variables to prevent data leakage in deployment logs.
-* 
+
 
 ## 🚀 Execution Commands Used
 
