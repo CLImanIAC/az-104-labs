@@ -45,8 +45,15 @@ Decorators (starting with `@`) modify parameter behavior, enforce rules, and add
 ```powershell
 az group create --name rg-bicep --location swedencentral
 ```
-**
+
 **2. Deploy Bicep template to existing resource group**
 ```powershell
 az deployment group create --resource-group rg-bicep --template-file D:\Azure\01-prerequisites\02-build-reusable-bicep\01-add-parameters-and-decorators\main.bicep
+```
+
+**3. 🧹 Cleanup: Deleting the Resource Group (`rg-bicep`)**
+To tear down all deployed resources and clean up your Azure environment when you are done practicing:
+
+```powershell
+az group delete --name rg-bicep --yes --no-wait
 ```
