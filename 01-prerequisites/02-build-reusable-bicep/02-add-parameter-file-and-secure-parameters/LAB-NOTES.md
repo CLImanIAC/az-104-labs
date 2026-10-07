@@ -9,12 +9,16 @@ az group create --name rg-bicep --location swedencentral
 az deployment group create --name main --resource-group rg-bicep --template-file D:\Azure\01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.bicep --parameters D:\Azure\01-prerequisites\02-build-reusable-bicep\02-add-parameter-file-and-secure-parameters\main.parameters.dev.json
 ```
 
-**3.Create a key vault and secrets.**
-```bash
+**3. Create a key vault and secrets.**
+```GIT bash
 keyVaultName='kv-rg-bicep-dev'
 read -s -p "Enter the login name: " login
 read -s -p "Enter the password: " password
-az keyvault create --name $keyVaultName --location eastus --enabled-for-template-deployment true
+```
+```powershell
+az provider register --namespace Microsoft.KeyVault
+az provider show --namespace Microsoft.KeyVault --query "registrationState"
+az keyvault create --name $keyVaultName --resource-group rg-bicep --location swedencentral --enabled-for-template-deployment true
 az keyvault secret set --vault-name $keyVaultName --name "sqlServerAdministratorLogin" --value $login --output none
 az keyvault secret set --vault-name $keyVaultName --name "sqlServerAdministratorPassword" --value $password --output none
 ```
