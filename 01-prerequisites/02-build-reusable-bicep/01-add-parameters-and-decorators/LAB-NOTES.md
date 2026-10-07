@@ -33,5 +33,5 @@ az group create --name rg-bicep --location swedencentral
 **
 **2. Deploy Bicep template to existing resource group**
 ```powershell
-az deployment group create --resource-group rg-bicep --template-file 01-prerequisites\02-build-reusable-bicep\01-add-parameters-and-decorators\main.bicep\main.bicep
+az deployment group create --resource-group rg-bicep --template-file D:\Azure\01-prerequisites\02-build-reusable-bicep\01-add-parameters-and-decorators\main.bicep
 ```
