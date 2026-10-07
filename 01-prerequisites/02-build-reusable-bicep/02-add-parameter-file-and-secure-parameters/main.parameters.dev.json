@@ -13,6 +13,22 @@
         "name": "Standard",
         "tier": "Standard"
       }
+    },
+        "sqlServerAdministratorLogin": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/703a824e-cfde-4b4a-b809-29929321277d/resourceGroups/rg-bicep/providers/Microsoft.KeyVault/vaults/kv-rg-bicep-dev"
+        },
+        "secretName": "sqlServerAdministratorLogin"
+      }
+    },
+    "sqlServerAdministratorPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/703a824e-cfde-4b4a-b809-29929321277d/resourceGroups/rg-bicep/providers/Microsoft.KeyVault/vaults/kv-rg-bicep-dev"
+        },
+        "secretName": "sqlServerAdministratorPassword"
+      }
     }
   }
 }
