@@ -36,7 +36,11 @@ az login
 ```powershell
 az group create --name rg-bicep --location swedencentral
 ```
-**3. Deploy the Bicep file to Azure**
+**3. Set default resource group - not needed later to add in commands**
+```powershell
+az configure --defaults group="rg-bicep"
+```
+**4. Deploy the Bicep file to Azure**
 ```powershell
 az deployment group create --name main --template-file D:\Azure\01-prerequisites\03-build-felxible-bicep\02-deploy-resource-using-loops\main.bicep
 ```
