@@ -23,7 +23,26 @@
 
 ## 🚀 Practical Exercise Workflow & Commands
 
-### 1. Setup & Environment Configuration
+### 0. Setup & Environment Configuration
 * **Ensure Bicep CLI is up to date:**
-  ```bash
-  az bicep install && az bicep upgrade
+```bash
+az bicep install && az bicep upgrade
+```
+**1. Sign in to azure**
+```powershell
+az login
+```
+**2. Create resource group**
+```powershell
+az group create --name rg-bicep --location swedencentral
+```
+**3. Deploy the Bicep file to Azure**
+```powershell
+az deployment group create --name main --template-file D:\Azure\01-prerequisites\03-build-felxible-bicep\02-deploy-resource-using-loops\main.bicep
+```
+## 🧹 Cleanup: Deleting the Resource Group (`rg-bicep`)
+To tear down all deployed resources and clean up your Azure environment when you are done practicing:
+
+```powershell
+az group delete --name rg-bicep --yes --no-wait
+```

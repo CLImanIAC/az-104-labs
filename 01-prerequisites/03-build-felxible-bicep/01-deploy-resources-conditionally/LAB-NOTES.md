@@ -40,3 +40,9 @@ az deployment group create --name main --template-file 01-prerequisites\03-build
 ```powershell
 az deployment group create --name main --template-file 01-prerequisites\03-build-felxible-bicep\01-deploay-resources-conditionally\main.bicep --parameters environmentName=Production location=swedencentral
 ```
+## 🧹 Cleanup: Deleting the Resource Group (`rg-bicep`)
+To tear down all deployed resources and clean up your Azure environment when you are done practicing:
+
+```powershell
+az group delete --name rg-bicep --yes --no-wait
+```
