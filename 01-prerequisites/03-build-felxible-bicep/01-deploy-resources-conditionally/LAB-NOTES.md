@@ -24,7 +24,19 @@ az bicep install && az bicep upgrade
 ```powershell
 az login
 ```
-**2. Get Supscription IDs**
+**2. Create resource group**
 ```powershell
-az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table
+az group create --name rg-bicep --location swedencentral
+```
+**3. Set default resource group - not needed later to add in commands**
+```powershell
+az configure --defaults group="rg-bicep"
+```
+**4. Deploy the Bicep file to Azure - DEV**
+```powershell
+az deployment group create --name main --template-file 01-prerequisites\03-build-felxible-bicep\01-deploay-resources-conditionally\main.bicep --parameters location=swedencentral
+```
+**5. Deploy the Bicep file to Azure - PROD**
+```powershell
+az deployment group create --name main --template-file 01-prerequisites\03-build-felxible-bicep\01-deploay-resources-conditionally\main.bicep --parameters environmentName=Production location=swedencentral
 ```

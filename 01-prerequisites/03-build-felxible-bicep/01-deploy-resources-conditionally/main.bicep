@@ -2,14 +2,14 @@
 param location string
 
 @secure()
-@description('The Administrator login username for the SQL server.')
+@description('The administrator login username for the SQL server.')
 param sqlServerAdministratorLogin string
 
 @secure()
-@description('The Administrator login password for the SQL server.')
+@description('The administrator login password for the SQL server.')
 param sqlServerAdministratorLoginPassword string
 
-@description('The name and tier of the App Service plan SKU.')
+@description('The name and tier of the SQL database SKU.')
 param sqlDatabaseSku object = {
   name: 'Standard'
   tier: 'Standard'
@@ -30,7 +30,7 @@ var sqlDatabaseName = 'TeddyBear'
 var auditingEnabled = environmentName == 'Production'
 var auditStorageAccountName = take('bearaudit${location}${uniqueString(resourceGroup().id)}', 24)
 
-resource sqlServer 'Microsoft.Sql/servers@2023-08-01' = {
+resource sqlServer 'Microsoft.Sql/servers@2024-05-01-preview' = {
   name: sqlServerName
   location: location
   properties: {
@@ -39,14 +39,11 @@ resource sqlServer 'Microsoft.Sql/servers@2023-08-01' = {
   }
 }
 
-resource sqlDatabase 'Microsoft.Sql/servers/databases@2023-08-01' = {
+resource sqlDatabase 'Microsoft.Sql/servers/databases@2024-05-01-preview' = {
   parent: sqlServer
   name: sqlDatabaseName
   location: location
-  sku: {
-    name: sqlDatabaseSku.name
-    tier: sqlDatabaseSku.tier
-  }
+  sku: sqlDatabaseSku
 }
 
 resource auditStorageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = if (auditingEnabled) {
@@ -63,7 +60,7 @@ resource sqlServerAudit 'Microsoft.Sql/servers/auditingSettings@2024-05-01-previ
   name: 'default'
   properties: {
     state: 'Enabled'
-    storageEndpoint: environmentName == 'Production' ? auditStorageAccount.properties.primaryEndpoints.blob : ''
-    storageAccountAccessKey: environmentName == 'Production' ? auditStorageAccount.listKeys().keys[0].value : ''
+    storageEndpoint: auditingEnabled ? auditStorageAccount.properties.primaryEndpoints.blob : ''
+    storageAccountAccessKey: auditingEnabled ? auditStorageAccount.listKeys().keys[0].value : ''
   }
 }
