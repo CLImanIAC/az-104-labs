@@ -13,6 +13,10 @@
 
 ## 🚀 Execution Commands Used
 
+**0. Update bicep**
+```powershell
+az bicep install && az bicep upgrade
+```
 **1. Authenticate with Azure**
 ```powershell
 az login
