@@ -13,8 +13,10 @@ param location array = [
 param environmentName string = 'dev'
 //   - Application name: teddycorp.
 param appName string = 'teddycorp'
-//   - Key Vault name example: kv-teddycorp-dev-${uniqueString(resourceGroup().id)} (must be globally unique across Azure due to global DNS).
-param keyVaultName string = 'kv-${appName}-${environmentName}-${uniqueString(resourceGroup().id)}'
+
+
+param sqlServerAdministratorLogin string = 'sqladmin'
+param sqlServerAdministratorPassword string = 'P@ssw0rd1234!'
 
 // - Network Layer (Using 3-region non-overlapping address spaces with 2 subnets each):
 //   - Region 1 (West Europe): VNet vnet-teddycorp-westeurope (10.1.0.0/16), App Subnet (10.1.1.0/24), DB Subnet (10.1.2.0/24).
@@ -108,6 +110,7 @@ resource sqlServers 'Microsoft.Sql/servers@2023-08-01' =  {
     administratorLoginPassword: 'P@ssw0rd1234!'
   }
 }
+
 
 //   - SQL Databases: sqldb-teddycorp linked via the parent property to their respective server.
 
