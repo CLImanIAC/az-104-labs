@@ -38,7 +38,7 @@ The lab encompasses the following enterprise tiers and components:
     - Region 1 (West Europe): VNet `vnet-teddycorp-westeurope` (`10.1.0.0/16`), App Subnet (`10.1.1.0/24`), DB Subnet (`10.1.2.0/24`).
     - Region 2 (North Europe): VNet `vnet-teddycorp-northeurope` (`10.2.0.0/16`), App Subnet (`10.2.1.0/24`), DB Subnet (`10.2.2.0/24`).
     - Region 3 (France Central): VNet `vnet-teddycorp-francecentral` (`10.3.0.0/16`), App Subnet (`10.3.1.0/24`), DB Subnet (`10.3.2.0/24`).
-- [ ] **Database Tier:**
+  - [ ] **Database Tier:**
   - SQL Servers: `sql-teddycorp-westeurope`, `sql-teddycorp-northeurope`, and `sql-teddycorp-francecentral`.
   - **Secure Parameters for SQL:**
     - `sqlServerAdministratorLogin`: Admin username (default: `'sqladmin'`).
