@@ -1,0 +1,17 @@
+[
+  {
+    "name": "teddyswedencentraldxsonsf2d4gwu",
+    "location": "swedencentral",
+    "fullyQualifiedDomainName": "teddyswedencentraldxsonsf2d4gwu.database.windows.net"
+  },
+  {
+    "name": "teddygermanywestcentraldxsonsf2d4gwu",
+    "location": "germanywestcentral",
+    "fullyQualifiedDomainName": "teddygermanywestcentraldxsonsf2d4gwu.database.windows.net"
+  },
+  {
+    "name": "teddyeastasiadxsonsf2d4gwu",
+    "location": "eastasia",
+    "fullyQualifiedDomainName": "teddyeastasiadxsonsf2d4gwu.database.windows.net"
+  }
+]
