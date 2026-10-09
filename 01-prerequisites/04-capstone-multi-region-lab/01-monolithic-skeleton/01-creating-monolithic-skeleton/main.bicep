@@ -14,9 +14,13 @@ param environmentName string = 'dev'
 //   - Application name: teddycorp.
 param appName string = 'teddycorp'
 
+// - Define secure parameters for SQL Server administrator login.
+@secure()
+param sqlServerAdministratorLogin string
 
-param sqlServerAdministratorLogin string = 'sqladmin'
-param sqlServerAdministratorPassword string = 'P@ssw0rd1234!'
+// - Define secure parameters for SQL Server administrator password.
+@secure()
+param sqlServerAdministratorLoginPassword string
 
 // - Network Layer (Using 3-region non-overlapping address spaces with 2 subnets each):
 //   - Region 1 (West Europe): VNet vnet-teddycorp-westeurope (10.1.0.0/16), App Subnet (10.1.1.0/24), DB Subnet (10.1.2.0/24).
@@ -106,17 +110,72 @@ resource sqlServers 'Microsoft.Sql/servers@2023-08-01' =  {
   name: 'sql-${appName}-${location[0]}'
   location: location[0]
   properties: {
-    administratorLogin: 'sqladmin'
-    administratorLoginPassword: 'P@ssw0rd1234!'
+    administratorLogin: sqlServerAdministratorLogin
+    administratorLoginPassword: sqlServerAdministratorLoginPassword
   }
 }
 
+resource sqlServers2 'Microsoft.Sql/servers@2023-08-01' =  {
+  name: 'sql-${appName}-${location[1]}'
+  location: location[1]
+  properties: {
+    administratorLogin: sqlServerAdministratorLogin
+    administratorLoginPassword: sqlServerAdministratorLoginPassword
+  }
+}
+
+resource sqlServers3 'Microsoft.Sql/servers@2023-08-01' =  {
+  name: 'sql-${appName}-${location[2]}'
+  location: location[2]
+  properties: {
+    administratorLogin: sqlServerAdministratorLogin
+    administratorLoginPassword: sqlServerAdministratorLoginPassword
+  }
+}
 
 //   - SQL Databases: sqldb-teddycorp linked via the parent property to their respective server.
+resource sqlDatabases 'Microsoft.Sql/servers/databases@2023-08-01' = {
+  parent: sqlServers
+  name: 'sqldb-${appName}'
+  location: location[0]
+  sku: {
+    name: 'S0'
+    tier: 'Standard'
+  }
+}
 
+resource sqlDatabases2 'Microsoft.Sql/servers/databases@2023-08-01' = {
+  parent: sqlServers2
+  name: 'sqldb-${appName}'
+  location: location[1]
+  sku: {
+    name: 'S0'
+    tier: 'Standard'
+  }
+}
+
+resource sqlDatabases3 'Microsoft.Sql/servers/databases@2023-08-01' = {
+  parent: sqlServers3
+  name: 'sqldb-${appName}'
+  location: location[2]
+  sku: {
+    name: 'S0'
+    tier: 'Standard'
+  }
+}
 
 // - Compute & Monitoring Tier:
 //   - Log Analytics: log-teddycorp-dev.
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-11-01-preview' = {
+  name: 'log-${appName}-${environmentName}'
+  location: location[0]
+  properties: {
+    retentionInDays: 30
+    sku: {
+      name: 'PerGB2018'
+    }
+  }
+}
 //   - Application Insights: appi-teddycorp-dev (linked to the Log Analytics workspace ID).
 //   - App Service Plan & Web App: plan-teddycorp-dev and app-teddycorp-dev.
 

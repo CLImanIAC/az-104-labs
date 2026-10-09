@@ -44,10 +44,9 @@ The lab encompasses the following enterprise tiers and components:
       - `sqlServerAdministratorLogin`: Admin username (default: `'sqladmin'`).
       - `sqlServerAdministratorPassword`: `@secure()` parameter for manual input during testing (avoiding plaintext hardcoding).
     - SQL Databases: `sqldb-teddycorp` linked via the `parent` property to their respective server.
-  - [ ] **Compute & Monitoring Tier:**
-    - Log Analytics: `log-teddycorp-dev`.
-    - Application Insights: `appi-teddycorp-dev` (linked to the Log Analytics workspace ID).
-    - App Service Plan & Web App: `plan-teddycorp-dev` and `app-teddycorp-dev`.
+  - [ ] **Compute Tier (App Service / Web Apps):**
+    - App Service Plans: `plan-teddycorp-westeurope`, `plan-teddycorp-northeurope`, and `plan-teddycorp-francecentral` (Standard tier).
+    - Web Apps: `app-teddycorp-westeurope`, `app-teddycorp-northeurope`, and `app-teddycorp-francecentral` linked to their respective plans.
   - [ ] **Security Tier:**
     - Resource Protection: Add a `CanNotDelete` Azure Resource Lock at the resource group level to prevent accidental deletion.
   - [ ] Validate the dependency graph in the VS Code Visualizer.
