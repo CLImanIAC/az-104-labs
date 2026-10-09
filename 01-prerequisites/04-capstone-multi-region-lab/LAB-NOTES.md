@@ -64,6 +64,7 @@ The lab encompasses the following enterprise tiers and components:
 
 - [ ] **01-module split**
   - [ ] Create the `modules/` folder.
+  - [ ] **Dynamic Network Scaling (Loops):** Refactor the fixed IP address pools from Phase 1 into dynamically generated multi-region loops using arrays for cleaner, scalable infrastructure code
   - [ ] Extract networking into `modules/networking.bicep` (handling multi-region loops).
   - [ ] Extract databases into `modules/database.bicep`.
   - [ ] Extract compute and monitoring into `modules/compute-monitoring.bicep`.
