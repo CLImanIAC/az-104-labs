@@ -1,23 +1,67 @@
-# Azure Identity & Governance: Microsoft Entra ID Fundamentals
+# Module Notes: Understand Microsoft Entra ID
 
-## 1. Microsoft Entra ID vs. Traditional AD DS
-* **Architecture & Protocols:**
-  * **AD DS (On-Premises):** Relies on traditional protocols like **Kerberos, LDAP, and DNS**. Features a hierarchical structure (Forest, Domain, OUs) with physical Domain Controllers (DCs).
-  * **Microsoft Entra ID (Cloud):** Built on modern web protocols and APIs, including **HTTPS, REST APIs, OAuth 2.0, OpenID Connect (OIDC), and SAML**. Uses a flat structure (no traditional OUs or classic GPOs).
-* **Primary Purpose:** Cloud-based Identity and Access Management (IAM) service for cloud apps (Microsoft 365, Azure Portal, SaaS apps like GitHub, Salesforce).
-
----
-
-## 2. Microsoft Entra ID Editions (Free vs. P1 vs. P2)
-* **Free:** Basic user/group management, directory synchronization with on-prem AD, basic reports, and SSO (up to 10 apps per user).
-* **P1 (Premium 1):** Focuses on **hybrid identity and advanced access control**. Includes **Conditional Access** policies (based on location, device state, risk), dynamic groups, and self-service password reset (SSPR) with on-premises write-back.
-* **P2 (Premium 2):** Focuses on **identity protection and governance**. Includes **Microsoft Entra Identity Protection** (risk-based detection and automated remediation) and **Privileged Identity Management (PIM)** (Just-In-Time access for administrative roles).
+## 1. Introduction & Core Concept
+* **Microsoft Entra ID:** A multi-tenant, cloud-based platform-as-a-service (PaaS) identity and access management (IAM) solution.
+* **Primary Focus:** Designed for web-based applications, cloud services (e.g., Microsoft 365, Azure Portal, SaaS apps), identity federation, and modern device management.
+* **Built-In Features:** Includes native support for Multi-Factor Authentication (MFA), Identity Protection, and Self-Service Password Reset (SSPR).
 
 ---
 
-## 3. Microsoft Entra Domain Services (AAD DS)
-* **Definition:** Fully managed domain controllers (DCs) in the Azure cloud, eliminating the need to deploy, configure, and patch VM-based DCs.
-* **Use Cases:** Running legacy applications in the cloud that require traditional **Kerberos/NTLM authentication**, LDAP queries, or domain-joined virtual machines where classic Group Policies (GPOs) are still mandatory.
+## 2. Microsoft Entra ID vs. Traditional AD DS (Active Directory Domain Services)
+* **AD DS (On-Premises):**
+  * Runs on Windows Server (Domain Controllers).
+  * Relies on protocols like **Kerberos, LDAP, and DNS**.
+  * Features a hierarchical structure (Forests, Domains, Organizational Units / OUs) and traditional Group Policy Objects (GPOs).
+* **Microsoft Entra ID (Cloud):**
+  * Runs as a managed cloud service.
+  * Relies on modern web protocols like **HTTPS, REST APIs, OAuth 2.0, OpenID Connect (OIDC), and SAML**.
+  * Features a **flat structure** (no traditional OUs or classic GPOs; object grouping is handled via groups instead).
+
+---
+
+## 3. Tenants, Subscriptions, and Namespaces
+* **Tenant:** Represents an individual, isolated instance of Microsoft Entra ID (multitenant by design). Acts as a security boundary and a container for directory objects (users, groups, applications).
+* **Azure Subscriptions & Tenants:** 
+  * An Azure subscription must be associated with **one and only one** Microsoft Entra tenant at a time.
+  * A single Microsoft Entra tenant can be associated with **multiple Azure subscriptions**.
+* **Domain Names:**
+  * Every tenant receives a default DNS domain name with the **`.onmicrosoft.com`** suffix.
+  * Organizations can add and verify custom domain names matching their corporate namespace.
+
+---
+
+## 4. Schema and Object Management
+* **Schema Differences:** Microsoft Entra ID contains fewer object types than AD DS; it lacks the traditional computer class (uses a *device* class instead) and OU class.
+* **Applications and Service Principals:**
+  * **Application object:** Contains the global definition of an application.
+  * **Service Principal object:** Constitutes an instance of the application within a specific tenant, handling access and permissions.
+
+---
+
+## 5. Directory Service for Cloud Apps
+* Entra ID acts as the central cloud directory service, providing authentication and authorization for:
+  * Microsoft 365 and external SaaS applications (Salesforce, GitHub, etc.).
+  * Internal cloud apps via App Registrations and Enterprise Applications.
+  * Single Sign-On (SSO) capabilities across integrated platforms.
+
+---
+
+## 6. Microsoft Entra ID Tiers (Free vs. P1 vs. P2)
+* **Free Tier:** 
+  * Included automatically with Azure subscriptions and Microsoft Online business services (M365, Intune).
+  * Covers basic user/group management, directory synchronization, basic reports, and SSO for up to 10 apps per user.
+* **Premium P1 Tier:** 
+  * Focused on **hybrid identity and advanced access control**.
+  * Key features: **Conditional Access** policies (based on location, device state, and risk), dynamic group membership, and SSPR with on-premises password write-back.
+* **Premium P2 Tier:** 
+  * Focused on **identity protection, security, and governance**.
+  * Key features: **Microsoft Entra Identity Protection** (automated risk detection/remediation) and **Privileged Identity Management (PIM)** (Just-In-Time access and approval workflows for administrative roles).
+
+---
+
+## 7. Microsoft Entra Domain Services (AAD DS)
+* **Definition:** Fully managed domain controllers in Azure provided as a service, eliminating the need to deploy and patch VM-based DCs.
+* **Use Cases:** Running legacy cloud workloads and applications that require traditional **Kerberos, NTLM authentication, or LDAP queries**, as well as managing domain-joined virtual machines requiring classic Group Policies.
 
 
 # AZ-104: Microsoft Entra ID - Practice Exam Questions
