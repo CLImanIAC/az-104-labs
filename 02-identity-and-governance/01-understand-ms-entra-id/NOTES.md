@@ -29,6 +29,9 @@
 * **C)** Microsoft Entra ID P2
 * **D)** Microsoft Entra ID Governance
 
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
+
 * **Correct Answer:** B
 * **Explanation:** Conditional Access policies and dynamic groups require Microsoft Entra ID P1.
 </details>
@@ -41,6 +44,9 @@
 * **B)** Privileged Identity Management (PIM) with Microsoft Entra ID P2
 * **C)** Entra Domain Services with P1
 * **D)** Self-Service Password Reset with Free tier
+
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
 
 * **Correct Answer:** B
 * **Explanation:** Privileged Identity Management (PIM) provides Just-In-Time (JIT) access, time-bound elevation, and approval workflows, which require Microsoft Entra ID P2.
@@ -55,6 +61,9 @@
 * **C)** Azure SQL Managed Instance with Active Directory authentication
 * **D)** Read-Only Domain Controller (RODC) on an Azure VM
 
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
+
 * **Correct Answer:** B
 * **Explanation:** Microsoft Entra Domain Services (AAD DS) provides fully managed domain controllers in Azure that support legacy protocols like Kerberos, NTLM, and LDAP without requiring you to manage VMs.
 </details>
@@ -67,6 +76,9 @@
 * **B)** In the local on-premises AD DS environment
 * **C)** Via Azure Cloud Shell using the Az PowerShell module
 * **D)** By modifying the Enterprise Application properties in Entra ID
+
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
 
 * **Correct Answer:** B
 * **Explanation:** For objects synchronized from an on-premises environment, the local AD DS remains the source of authority. Modifications to core attributes must be made on-premises and synced over.
@@ -82,6 +94,9 @@
 * **D)** OpenID Connect (OIDC)
 * **E)** Kerberos
 
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
+
 * **Correct Answer:** B, D
 * **Explanation:** Microsoft Entra ID is built on modern web standards and protocols such as SAML, OAuth 2.0, and OpenID Connect (OIDC). LDAP, NTLM, and Kerberos are legacy on-premises protocols.
 </details>
@@ -94,6 +109,9 @@
 * **B)** Enterprise Applications
 * **C)** App Registrations
 * **D)** Managed Identities for Azure Resources
+
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
 
 * **Correct Answer:** B
 * **Explanation:** Enterprise Applications are used to manage pre-integrated SaaS apps, gallery apps, and non-gallery apps configured for Single Sign-On (SSO) and provisioning within your tenant.
@@ -108,6 +126,9 @@
 * **C)** Only in P2 with Identity Protection
 * **D)** Azure Basic tier
 
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
+
 * **Correct Answer:** B
 * **Explanation:** Basic SSPR is available in Free, but writing passwords back to an on-premises environment (password write-back) requires Microsoft Entra ID P1 or P2.
 </details>
@@ -120,6 +141,9 @@
 * **B)** Microsoft Entra Domain Services
 * **C)** Custom security attributes
 * **D)** Multi-Tenant Organization sync via P2
+
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
 
 * **Correct Answer:** A
 * **Explanation:** Microsoft Entra B2B collaboration allows you to invite guest users from external organizations to safely access your corporate resources.
@@ -134,6 +158,9 @@
 * **C)** Dynamic device membership using Free tier
 * **D)** Microsoft 365 group with Assigned membership
 
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
+
 * **Correct Answer:** B
 * **Explanation:** Dynamic groups (both for users and devices) evaluate rules based on user attributes and require a Microsoft Entra ID P1 or P2 license.
 </details>
@@ -146,6 +173,9 @@
 * **B)** Azure Monitor Application Insights
 * **C)** Azure Bastion
 * **D)** Log Analytics Workspace custom queries
+
+<details>
+<summary><b>Show Answer and Explanation</b></summary>
 
 * **Correct Answer:** A
 * **Explanation:** Microsoft Entra Connect Health helps you monitor and gain deep visibility into your on-premises identity infrastructure and synchronization services.
