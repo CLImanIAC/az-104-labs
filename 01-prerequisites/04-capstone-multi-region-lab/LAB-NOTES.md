@@ -1,12 +1,15 @@
 # Lab Notes: Multi-Region Enterprise Architecture Lab (TeddyCorp)
 
 ## Overview
+
 Building a scalable, multi-region Azure infrastructure using Bicep, following an incremental, human-centric development approach from a monolithic skeleton towards advanced enterprise patterns.
 
 ---
 
 ## Architecture Scope & Resources
+
 The lab encompasses the following enterprise tiers and components:
+
 - **Network Layer:**
   - Virtual Networks (VNets) across 3 regions with non-overlapping address spaces
   - Subnets (App and DB subnets per VNet, nested within loops)
@@ -68,7 +71,7 @@ The lab encompasses the following enterprise tiers and components:
   - [ ] Extract databases into `modules/database.bicep`.
   - [ ] Extract compute and monitoring into `modules/compute-monitoring.bicep`.
   - [ ] Extract Key Vault into `modules/keyvault.bicep`:
-    - Key Vault naming convention: `kv-teddycorp-dev-${uniqueString(resourceGroup().id)}` *(must be globally unique across Azure due to global DNS)*.
+    - Key Vault naming convention: `kv-teddycorp-dev-${uniqueString(resourceGroup().id)}` _(must be globally unique across Azure due to global DNS)_.
   - [ ] Rewrite `main.bicep` to act purely as an orchestrator that calls modules and wires outputs (such as subnet IDs or FQDNs) from one module into another.
 
 - [ ] **02-external-parameters & Secrets Automation**
@@ -79,37 +82,54 @@ The lab encompasses the following enterprise tiers and components:
 
 ## 🚀 Practical Exercise Workflow & Commands
 
-## Setup & Environment Configuration ##
+## Setup & Environment Configuration
 
 **0. Ensure Bicep CLI is up to date:**
+
 ```bash
 az bicep install && az bicep upgrade
 ```
+
 **1. Sign in to Azure:**
+
 ```powershell
 az login
 ```
+
 **2. Create resource group:**
+
 ```powershell
 az group create --name rg-bicep --location swedencentral
 ```
+
 **3. Set default resource group:**
+
 ```powershell
 az configure --defaults group="rg-bicep"
 ```
+
 **4. Deploy the Bicep file to Azure:**
+
 ```powershell
-az deployment group create --name main --template-file D:\Azure\01-prerequisites\04-capstone-multi-region-lab\01-monolithic-skeleton\01-creating-monolithic-skeleton\main.bicep
+az deployment group create --name main --template-file main.bicep
 ```
+
 **5. Check locks in resource group**
+
 ```powershell
 az lock list --resource-group rg-bicep --output table
 ```
+
 **6. Delete lock**
+
 ```powershell
 az lock delete --name rg-lock-teddycorp --resource-group rg-bicep
 ```
+
 **7 . Cleanup: Deleting the Resource Group (rg-bicep)**
+
 ```powershell
 az group delete --name rg-bicep --yes --no-wait
 ```
+
+

@@ -226,37 +226,40 @@ resource sqlDatabases3 'Microsoft.Sql/servers/databases@2023-08-01' = {
 
 // - Security Tier:
 //   - Resource Protection: Add a CanNotDelete Azure Resource Lock at the resource group level to prevent accidental deletion.
-resource resourceGroupLock 'Microsoft.Authorization/locks@2020-05-01' = {
-  name: 'rg-lock-${appName}'
-  properties: {
-    level: 'CanNotDelete'
-    notes: 'This lock prevents accidental deletion of the resource group and its resources.'
-  }
-}
+// resource resourceGroupLock 'Microsoft.Authorization/locks@2020-05-01' = {
+//   name: 'rg-lock-${appName}'
+//   properties: {
+//     level: 'CanNotDelete'
+//     notes: 'This lock prevents accidental deletion of the resource group and its resources.'
+//   }
+// }
 
 // - Validate the dependency graph in the VS Code Visualizer.
-
 // - Define output blocks at the bottom of the script:
-//   - sqlServerFqdns: Array/loop returning Fully Qualified Domain Names for all regional SQL servers (e.g., sql-teddycorp-swedencentral.database.windows.net).
-output sqlServerFqdns array = [
-  sqlServers.properties.fullyQualifiedDomainName
-  sqlServers2.properties.fullyQualifiedDomainName
-  sqlServers3.properties.fullyQualifiedDomainName
-]
+//   - sqlServerFqdns / sqlServerInfo: Array/loop returning Fully Qualified Domain Names for all regional SQL servers (e.g., sql-teddycorp-dev-swedencentral.database.windows.net).
+output sqlServerInfo array = [for (loc, i) in location: {
+  region: loc
+  serverName: i == 0 ? sqlServers.name : (i == 1 ? sqlServers2.name : sqlServers3.name)
+  fullyQualifiedDomainName: i == 0 ? sqlServers.properties.fullyQualifiedDomainName : (i == 1 ? sqlServers2.properties.fullyQualifiedDomainName : sqlServers3.properties.fullyQualifiedDomainName)
+}]
 
-//   - virtualNetworkNames: Array returning the names of all deployed regional virtual networks.
-output virtualNetworkNames array = [
-  virtualNetworks.name
-  virtualNetworks2.name
-  virtualNetworks3.name
-]
+//   - sqlDatabaseInfo: Array returning database names and IDs for all regional SQL databases.
+output sqlDatabaseInfo array = [for (loc, i) in location: {
+  region: loc
+  databaseName: i == 0 ? sqlDatabases.name : (i == 1 ? sqlDatabases2.name : sqlDatabases3.name)
+  databaseId: i == 0 ? sqlDatabases.id : (i == 1 ? sqlDatabases2.id : sqlDatabases3.id)
+}]
 
-// - Define output block for testing a single virtual network:
-output singleVnetName string = virtualNetworks.name
+//   - virtualNetworkNames: Array returning the names and IDs of all deployed regional virtual networks.
+output vnetInfo array = [for (loc, i) in location: {
+  region: loc
+  name: i == 0 ? virtualNetworks.name : (i == 1 ? virtualNetworks2.name : virtualNetworks3.name)
+  id: i == 0 ? virtualNetworks.id : (i == 1 ? virtualNetworks2.id : virtualNetworks3.id)
+}]
 
 //   - webAppUrl: Retrieved via webApp.properties.defaultHostName (the public URL of the web application - note: uncomment once Compute tier quota is resolved).
-// output webAppUrl array = [
-//   appServiceApps.properties.defaultHostName
-//   appServiceApps2.properties.defaultHostName
-//   appServiceApps3.properties.defaultHostName
-// ]
+// output webAppUrl array = [for (loc, i) in location: {
+//   region: loc
+//   appName: i == 0 ? appServiceApps.name : (i == 1 ? appServiceApps2.name : appServiceApps3.name)
+//   defaultHostName: i == 0 ? appServiceApps.properties.defaultHostName : (i == 1 ? appServiceApps2.properties.defaultHostName : appServiceApps3.properties.defaultHostName)
+// }]
