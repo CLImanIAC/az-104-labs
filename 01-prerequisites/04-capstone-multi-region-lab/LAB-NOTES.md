@@ -108,10 +108,16 @@ az group create --name rg-bicep --location swedencentral
 az configure --defaults group="rg-bicep"
 ```
 
-**4. Deploy the Bicep file to Azure:**
+**4a. Deploy the Bicep file to Azure:**
 
 ```powershell
 az deployment group create --name main --template-file main.bicep
+```
+
+**4b. Deploy the Bicep file to Azure with parameters:**
+
+```powershell
+az deployment group create --name main --template-file main.bicep --parameters main.parameters.dev.bicepparam
 ```
 
 **5. Check locks in resource group**
@@ -131,5 +137,3 @@ az lock delete --name rg-lock-teddycorp --resource-group rg-bicep
 ```powershell
 az group delete --name rg-bicep --yes --no-wait
 ```
-
-
