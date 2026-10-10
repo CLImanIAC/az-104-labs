@@ -31,7 +31,7 @@ The lab encompasses the following enterprise tiers and components:
 - [ ] **01-monolithic-skeleton**
   - [ ] Create `main.bicep` inside the `01-monolithic-skeleton` folder.
   - [ ] **Define parameters and name resources according to conventions:**
-    - Locations: `westeurope`, `northeurope`, and `francecentral`.
+    - Locations: `swedencentral`, `francecentral`, and `germanywestcentral`.
     - Environment: `dev`.
     - Application name: `teddycorp`.
   - [ ] **Network Layer (Using 3-region non-overlapping address spaces with 2 subnets each):**
@@ -79,21 +79,37 @@ The lab encompasses the following enterprise tiers and components:
 
 ## 🚀 Practical Exercise Workflow & Commands
 
-### 0. Setup & Environment Configuration
-Ensure Bicep CLI is up to date:
+## Setup & Environment Configuration ##
+
+**0. Ensure Bicep CLI is up to date:**
+```bash
 az bicep install && az bicep upgrade
-
-Sign in to Azure:
+```
+**1. Sign in to Azure:**
+```powershell
 az login
-
-Create resource group:
+```
+**2. Create resource group:**
+```powershell
 az group create --name rg-bicep --location swedencentral
-
-Set default resource group:
+```
+**3. Set default resource group:**
+```powershell
 az configure --defaults group="rg-bicep"
-
-Deploy the Bicep file to Azure:
-az deployment group create --name main --template-file D:\Azure\01-prerequisites\03-build-felxible-bicep\03-variable-and-output-loops\main.bicep
-
-Cleanup: Deleting the Resource Group (rg-bicep)
+```
+**4. Deploy the Bicep file to Azure:**
+```powershell
+az deployment group create --name main --template-file D:\Azure\01-prerequisites\04-capstone-multi-region-lab\01-monolithic-skeleton\01-creating-monolithic-skeleton\main.bicep
+```
+**5. Check locks in resource group**
+```powershell
+az lock list --resource-group rg-bicep --output table
+```
+**6. Delete lock**
+```powershell
+az lock delete --name rg-lock-teddycorp --resource-group rg-bicep
+```
+**7 . Cleanup: Deleting the Resource Group (rg-bicep)**
+```powershell
 az group delete --name rg-bicep --yes --no-wait
+```

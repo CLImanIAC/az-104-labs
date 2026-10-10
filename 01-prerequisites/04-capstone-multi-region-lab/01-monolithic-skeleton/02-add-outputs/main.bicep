@@ -25,7 +25,7 @@ param sqlServerAdministratorLoginPassword string
 // - Network Layer (Using 3-region non-overlapping address spaces with 2 subnets each):
 //   - Region 1 (West Europe): VNet vnet-teddycorp-westeurope (10.1.0.0/16), App Subnet (10.1.1.0/24), DB Subnet (10.1.2.0/24).
 resource virtualNetworks 'Microsoft.Network/virtualNetworks@2023-11-01' = {
-  name: 'vnet-${appName}-${location[0]}'
+  name: 'vnet-${appName}-${environmentName}-${location[0]}'
   location: location[0]
   properties: {
     addressSpace: {
@@ -52,7 +52,7 @@ resource virtualNetworks 'Microsoft.Network/virtualNetworks@2023-11-01' = {
 
 //   - Region 2 (North Europe): VNet vnet-teddycorp-northeurope (10.2.0.0/16), App Subnet (10.2.1.0/24), DB Subnet (10.2.2.0/24).
 resource virtualNetworks2 'Microsoft.Network/virtualNetworks@2023-11-01' = {
-  name: 'vnet-${appName}-${location[1]}'
+  name: 'vnet-${appName}-${environmentName}-${location[1]}'
   location: location[1]
   properties: {
     addressSpace: {
@@ -79,7 +79,7 @@ resource virtualNetworks2 'Microsoft.Network/virtualNetworks@2023-11-01' = {
 
 //   - Region 3 (France Central): VNet vnet-teddycorp-francecentral (10.3.0.0/16), App Subnet (10.3.1.0/24), DB Subnet (10.3.2.0/24).
 resource virtualNetworks3 'Microsoft.Network/virtualNetworks@2023-11-01' = {
-  name: 'vnet-${appName}-${location[2]}'
+  name: 'vnet-${appName}-${environmentName}-${location[2]}'
   location: location[2]
   properties: {
     addressSpace: {
@@ -235,3 +235,28 @@ resource resourceGroupLock 'Microsoft.Authorization/locks@2020-05-01' = {
 }
 
 // - Validate the dependency graph in the VS Code Visualizer.
+
+// - Define output blocks at the bottom of the script:
+//   - sqlServerFqdns: Array/loop returning Fully Qualified Domain Names for all regional SQL servers (e.g., sql-teddycorp-swedencentral.database.windows.net).
+output sqlServerFqdns array = [
+  sqlServers.properties.fullyQualifiedDomainName
+  sqlServers2.properties.fullyQualifiedDomainName
+  sqlServers3.properties.fullyQualifiedDomainName
+]
+
+//   - virtualNetworkNames: Array returning the names of all deployed regional virtual networks.
+output virtualNetworkNames array = [
+  virtualNetworks.name
+  virtualNetworks2.name
+  virtualNetworks3.name
+]
+
+// - Define output block for testing a single virtual network:
+output singleVnetName string = virtualNetworks.name
+
+//   - webAppUrl: Retrieved via webApp.properties.defaultHostName (the public URL of the web application - note: uncomment once Compute tier quota is resolved).
+// output webAppUrl array = [
+//   appServiceApps.properties.defaultHostName
+//   appServiceApps2.properties.defaultHostName
+//   appServiceApps3.properties.defaultHostName
+// ]
