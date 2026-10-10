@@ -21,7 +21,7 @@
 
 ## 3. Tenants, Subscriptions, and Namespaces
 * **Tenant:** Represents an individual, isolated instance of Microsoft Entra ID (multitenant by design). Acts as a security boundary and a container for directory objects (users, groups, applications).
-* **Azure Subscriptions & Tenants:** 
+* **Azure Subscriptions & Tenants:**
   * An Azure subscription must be associated with **one and only one** Microsoft Entra tenant at a time.
   * A single Microsoft Entra tenant can be associated with **multiple Azure subscriptions**.
 * **Domain Names:**
@@ -47,13 +47,13 @@
 ---
 
 ## 6. Microsoft Entra ID Tiers (Free vs. P1 vs. P2)
-* **Free Tier:** 
+* **Free Tier:**
   * Included automatically with Azure subscriptions and Microsoft Online business services (M365, Intune).
   * Covers basic user/group management, directory synchronization, basic reports, and SSO for up to 10 apps per user.
-* **Premium P1 Tier:** 
+* **Premium P1 Tier:**
   * Focused on **hybrid identity and advanced access control**.
   * Key features: **Conditional Access** policies (based on location, device state, and risk), dynamic group membership, and SSPR with on-premises password write-back.
-* **Premium P2 Tier:** 
+* **Premium P2 Tier:**
   * Focused on **identity protection, security, and governance**.
   * Key features: **Microsoft Entra Identity Protection** (automated risk detection/remediation) and **Privileged Identity Management (PIM)** (Just-In-Time access and approval workflows for administrative roles).
 
