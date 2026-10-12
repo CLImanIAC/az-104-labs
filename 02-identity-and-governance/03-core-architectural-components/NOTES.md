@@ -1,58 +1,58 @@
 # Summary: Describe Core Architectural Components of Azure
 
 ## 1. Introduction
-* **Cilj:** Razumijevanje osnovne fizičke i upravljačke (management) strukture Microsoft Azure platforme.
-* **Ključni koncepti:** Fizička infrastruktura (datacentri, regije, zone dostupnosti) i upravljačka infrastruktura (resursi, resursne grupe, pretplate, management grupe).
+* **Goal:** Understand the core physical and management structure of the Microsoft Azure platform.
+* **Key Concepts:** Physical infrastructure (datacenters, regions, availability zones) and management infrastructure (resources, resource groups, subscriptions, management groups).
 
 ---
 
 ## 2. What is Microsoft Azure?
-* **Definicija:** Azure je skup cloud servisa koji raste i pomaže organizacijama da odgovore na poslovne izazove.
-* **Model rada:** Omogućuje izgradnju, upravljanje i deployment aplikacija na masovnoj, globalnoj mreži koristeći omiljene alate i okvire (frameworks).
-* **Prednosti:** Agilnost, skalabilnost, fleksibilnost i prelazak s CapEx na OpEx model financiranja.
+* **Definition:** Azure is a growing set of cloud services designed to help organizations meet their business challenges.
+* **Operating Model:** Enables building, managing, and deploying applications on a massive global network using preferred tools and frameworks.
+* **Benefits:** Agility, scalability, flexibility, and transitioning from CapEx to OpEx financial models.
 
 ---
 
 ## 3. Get Started with Azure Accounts
-* **Azure Tenant / Entra ID:** Centralni identifikacijski sustav vezan uz organizaciju.
-* **Azure Account:** Korisnički račun koji daje pristup Azure servisima i služi kao osnova za kreiranje pretplata.
-* **Korisničke opcije:**
-  * **Free Account:** Besplatni krediti za prvih 30 dana + pristup besplatnim servisima na 12 mjeseci + 55+ stalno besplatnih servisa.
-  * **Pay-As-You-Go:** Plaćanje po stvarnoj potrošnji bez unaprijed definiranih obveza.
-  * **Student / Enterprise Agreements (EA):** Posebni ugovori i popusti prilagođeni specifičnim skupinama ili velikim tvrtkama.
+* **Azure Tenant / Entra ID:** The central identity environment associated with an organization.
+* **Azure Account:** A user identity that provides access to Azure services and serves as the baseline for creating subscriptions.
+* **Account Options:**
+  * **Free Account:** Free credits for the first 30 days + access to select free services for 12 months + 55+ always-free services.
+  * **Pay-As-You-Go:** Pay for what you use with no upfront commitments.
+  * **Student / Enterprise Agreements (EA):** Customized agreements and discounts tailored for specific groups or enterprise organizations.
 
 ---
 
 ## 4. Describe Azure Physical Infrastructure
-* **Datacenters (Podatkovni centri):** Fizičke zgrade sa poslužiteljima, napajanjem, hlađenjem i mrežnom opremom.
-* **Regions (Regije):**
-  * Geografska područja unutar kojih se nalazi jedan ili više podatkovnih centara povezanih mrežom niske latencije.
-  * Osiguravaju fleksibilnost, usklađenost s lokalnim zakonima o podacima (data residency) i blizinu korisnicima.
-  * **Region Pairs:** Većina regija ima uparenu drugu regiju unutar iste geografije (udaljenu barem 300 milja) radi zaštite od elementarnih nepogoda i planiranih održavanja.
-* **Availability Zones (Zone dostupnosti):**
-  * Fizički odvojeni podatkovni centri unutar iste Azure regije.
-  * Svaka zona ima nezavisno napajanje, hlađenje i mrežu.
-  * Služe za postizanje visoke dostupnosti (**High Availability**) i otpornosti na ispad pojedinačnog objekta (SLA do 99.99%).
+* **Datacenters:** Physical buildings containing servers, power, cooling, and networking equipment.
+* **Regions:**
+  * Geographical areas containing one or more datacenters connected via a low-latency network.
+  * Ensure flexibility, compliance with local data residency laws, and proximity to users.
+  * **Region Pairs:** Most regions are paired with another region within the same geography (at least 300 miles away) to protect against natural disasters and planned maintenance.
+* **Availability Zones:**
+  * Physically separate datacenters within the same Azure region.
+  * Each zone has independent power, cooling, and networking.
+  * Used to achieve **High Availability** and resilience against facility-level failures (SLA up to 99.99%).
 
 ---
 
 ## 5. Describe Azure Management Infrastructure
-* **Resources (Resursi):** Osnovni građevni blokovi Azurea (Compute VMs, Storage Accounts, Virtual Networks, Databases).
-* **Resource Groups (Resursne grupe):**
-  * Logički kontejneri u koje se grupiraju resursi koji dijele isti životni ciklus (kreiranje, ažuriranje, brisanje).
-  * Svaki resurs može pripadati **samo jednoj** resursnoj grupi.
-* **Subscriptions (Pretplate):**
-  * Jedinica za upravljanje, sigurnost i naplatu.
-  * Povezuje Azure račune s resursima i definira granice potrošnje (Cost Control) te pristupa (RBAC).
-* **Management Groups (Management grupe):**
-  * Hijerarhijske strukture iznad pretplata.
-  * Omogućuju primjenu upravljačkih politika (Azure Policy), usklađenosti i pravila pristupa (RBAC) na više pretplata odjednom.
-  * **Hijerarhija:** Root Management Group -> Management Groups -> Subscriptions -> Resource Groups -> Resources.
+* **Resources:** The basic building blocks of Azure (Compute VMs, Storage Accounts, Virtual Networks, Databases).
+* **Resource Groups:**
+  * Logical containers that group resources sharing the same lifecycle (create, update, delete).
+  * Each resource can belong to **only one** resource group at a time.
+* **Subscriptions:**
+  * A unit of management, security, and billing.
+  * Connects Azure accounts to resources and defines boundaries for cost control and Role-Based Access Control (RBAC).
+* **Management Groups:**
+  * Hierarchical structures positioned above subscriptions.
+  * Enable the application of governance policies (Azure Policy), compliance standards, and access controls (RBAC) across multiple subscriptions simultaneously.
+  * **Hierarchy:** Root Management Group -> Management Groups -> Subscriptions -> Resource Groups -> Resources.
 
 ---
 
 ## 6. Knowledge Check & Summary
-* **Ključni zaključci:**
-  1. Fizička struktura (Datacenters -> Availability Zones -> Regions) osigurava otpornost i visoku dostupnost.
-  2. Upravljačka struktura (Management Groups -> Subscriptions -> Resource Groups -> Resources) omogućuje strog governance, kontrolu troškova i organizaciju prava pristupa.
-  3. Razumijevanje ovih komponenti temelj je za izgradnju bilo koje scalable i sigurne enterprise arhitekture.
+* **Key Takeaways:**
+  1. Physical structure (Datacenters -> Availability Zones -> Regions) ensures resilience and high availability.
+  2. Management structure (Management Groups -> Subscriptions -> Resource Groups -> Resources) provides strict governance, cost management, and access control.
+  3. Mastering these core components forms the foundation for building any scalable and secure enterprise cloud architecture.
