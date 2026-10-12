@@ -18,10 +18,27 @@
 * **Microsoft Entra Hybrid Joined:** Devices joined to an on-premises Active Directory and synchronized/registered into Entra ID for unified management and Conditional Access policy enforcement.
 
 ## 4. Licensing & Common Pitfalls
+
 * **Assignment Methods:** Licenses can be assigned directly to individual user accounts or automated using Group-based Licensing (recommended for enterprise scale).
 * **Usage Location Requirement:** A user's Usage Location property (country/region code) must be explicitly configured before any product license can be assigned to them.
-* **DependencyViolation Error:** Occurs when trying to remove a license containing a service plan that is still depended upon by another active service.
-  * **Resolution:** Reassign or remove the dependent service dependencies before removing the base license.
+
+### Common License Errors & Troubleshooting
+
+* **`DependencyViolation` (Greška ovisnosti):**
+  * **Uzrok:** Pokušavaš ukloniti licencu (ili servisni plan unutar nje) koja sadrži uslugu o kojoj ovisi neki drugi aktivni servis na korisničkom računu (npr. uklanjanje osnovne M365 licence dok je korisniku aktivan Teams ili Exchange mailbox).
+  * **Rješenje:** Prvo moraš onemogućiti ili rekonfigurirati zavisne servisne planove/usluge prije nego što ukloniš matičnu licencu.
+
+* **`CountViolation` / Prekoračenje kvote licenci:**
+  * **Uzrok:** Pokušavaš dodijeliti više licenci nego što organizacija ima kupljenih (tzv. *Available Units* je 0).
+  * **Rješenje:** Moraš nabaviti dodatne licence (kupnja/EA) ili ukloniti licence s neaktivnih korisnika kako bi oslobodio kvotu.
+
+* **`Conflict` (Konflikt servisnih planova):**
+  * **Uzrok:** Korisniku pokušavaš dodijeliti novu licencu koja u sebi sadrži servisni plan koji se kosi s već postojećim servisnim planom na drugoj aktivnoj licenci (npr. dvije različite licence koje obje pokušavaju dodijeliti isti Exchange Online plan).
+  * **Rješenje:** Ukloni staru licencu koja uzrokuje konflikt ili ručno isključi specifični servisni plan (service plan toggle) prilikom dodjele nove licence.
+
+* **Nedostatak Usage Location-a:**
+  * **Uzrok:** Pokušaj dodjele licence korisniku kojem u profilu nije postavljena država/lokacija korištenja. Microsoft zahtijeva ovu informaciju zbog zakonskih i podatkovnih regulativa (data residency).
+  * **Rješenje:** Urediti korisnički profil i postaviti polje *Usage location* (npr. `HR`, `DE`, `US`) prije ponovnog pokušaja dodjele licence.
 
 ## 5. Custom Security Attributes
 * **Purpose:** Extend user and application profiles with custom metadata (key-value pairs) to support attribute-based access control (ABAC) scenarios.
