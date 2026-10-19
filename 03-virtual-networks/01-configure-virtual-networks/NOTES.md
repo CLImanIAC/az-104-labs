@@ -3,7 +3,6 @@
 ## 1. Introduction & Overview
 - Azure virtual networks (VNets) are essential components for creating secure private networks in Azure, enabling safe communication between resources, the internet, and on-premises environments.
 - Key use cases include creating isolated cloud-only networks or securely extending enterprise data centers into the cloud.
-- The module prepares candidates for **Exam AZ-104: Microsoft Azure Administrator** by covering subnets, IP addressing, and virtual network configuration.
 
 ## 2. Planning Virtual Networks
 - Proper planning involves defining address spaces using CIDR notation (e.g., `/16` for a VNet and `/24` for subnets).
