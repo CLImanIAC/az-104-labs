@@ -1,4 +1,4 @@
-# Azure Virtual Network Security - Study Notes (AZ-104 / SC-300 / Red Team Prep)
+# Azure Virtual Network Security - Study Notes
 ---
 
 ## 1. Introduction & Overview
