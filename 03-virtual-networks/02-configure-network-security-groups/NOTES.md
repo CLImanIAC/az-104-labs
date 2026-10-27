@@ -2,8 +2,8 @@
 ---
 
 ## 1. Introduction & Overview
-- **Objective:** Control network traffic to and from Azure resources within a virtual network using Network Security Groups (NSGs)[cite: 1].
-- **Core Principle:** Limit exposure and prevent unauthorized or unsecured network traffic from reaching key application systems[cite: 1].
+- **Objective:** Control network traffic to and from Azure resources within a virtual network using Network Security Groups (NSGs)
+- **Core Principle:** Limit exposure and prevent unauthorized or unsecured network traffic from reaching key application systems
 
 ---
 
